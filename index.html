@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест: Комп'ютерні презентації. Редактор презентацій Microsoft PowerPoint</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .question-block {
+            background: #fdfdfd;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #1a252f;
+        }
+        .q-num {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background: #f8f9fa;
+            border: 1px solid transparent;
+            transition: background 0.2s;
+        }
+        .options label:hover {
+            background: #eef2f7;
+            border-color: #d0dbe5;
+        }
+        .options input {
+            margin-right: 10px;
+            transform: scale(1.1);
+        }
+        .match-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+        .match-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .match-row select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .match-options-list {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .match-options-list div {
+            margin-bottom: 8px;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #219150;
+        }
+        #result-box {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: #e8f4f8;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            text-align: center;
+        }
+        #result-box h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .score-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 15px 0;
+        }
+        .correct-block {
+            border-color: #2ecc71 !important;
+            background-color: #f0fdf4 !important;
+        }
+        .wrong-block {
+            border-color: #e74c3c !important;
+            background-color: #fef2f2 !important;
+        }
+        @media (max-width: 600px) {
+            .match-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="test-topic">Комп'ютерні презентації. Редактор презентацій Microsoft PowerPoint</h1>
+    <form id="quiz-form">
+
+        <!-- Питання 1 -->
+        <div class="question-block" id="q1">
+            <div class="question-title"><span class="q-num">1</span>Що таке презентація:</div>
+            <div class="options">
+                <label><input type="radio" name="q1" value="0"> подання звітної документації</label>
+                <label><input type="radio" name="q1" value="1"> виступ перед аудиторією</label>
+                <label><input type="radio" name="q1" value="2"> представлення деякої інформації</label>
+                <label><input type="radio" name="q1" value="3"> моніторинг виконаної роботи</label>
+            </div>
+        </div>
+
+        <!-- Питання 2 -->
+        <div class="question-block" id="q2">
+            <div class="question-title"><span class="q-num">2</span>Визначення поняття комп'ютерної презентації:</div>
+            <div class="options">
+                <label><input type="radio" name="q2" value="0"> документ для оприлюдення відомостей</label>
+                <label><input type="radio" name="q2" value="1"> сукупність взаємопов'язаних слайдів</label>
+                <label><input type="radio" name="q2" value="2"> подання ілюстративної інформації</label>
+                <label><input type="radio" name="q2" value="3"> затвердження матеріалу проекту</label>
+            </div>
+        </div>
+
+        <!-- Питання 3 -->
+        <div class="question-block" id="q3">
+            <div class="question-title"><span class="q-num">3</span>Засоби необхідні для показу комп'ютерної презентації (оберіть кілька):</div>
+            <div class="options">
+                <label><input type="checkbox" name="q3" value="0"> магнітофон</label>
+                <label><input type="checkbox" name="q3" value="1"> проектор</label>
+                <label><input type="checkbox" name="q3" value="2"> екран</label>
+                <label><input type="checkbox" name="q3" value="3"> принтер</label>
+                <label><input type="checkbox" name="q3" value="4"> блокнот</label>
+                <label><input type="checkbox" name="q3" value="5"> комп'ютер</label>
+            </div>
+        </div>
+
+        <!-- Питання 4 -->
+        <div class="question-block" id="q4">
+            <div class="question-title"><span class="q-num">4</span>Встановити відповідність між етапами роботи над комп'ютерною презентацією:</div>
+            <div class="match-grid">
+                <div>
+                    <div class="match-row">
+                        <span>Керування презентацією</span>
+                        <select name="q4_0">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>Постановка завдання</span>
+                        <select name="q4_1">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>Планування презентації</span>
+                        <select name="q4_2">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>Створення презентації</span>
+                        <select name="q4_3">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="match-options-list">
+                    <div><b>1.</b> Наповнення вмісту слайдів, робота над об'єктами</div>
+                    <div><b>2.</b> Демонстрація слайдів, друк зменшених копій</div>
+                    <div><b>3.</b> Розподіл зібраного матеріалу на логічні блоки</div>
+                    <div><b>4.</b> Визначення мети, структури та орієнтовної аудиторії слухачів</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Питання 5 -->
+        <div class="question-block" id="q5">
+            <div class="question-title"><span class="q-num">5</span>Демонстрація серії фотографій з ефектними переходами між знімками і супроводжуються приємною музикою:</div>
+            <div class="options">
+                <label><input type="radio" name="q5" value="0"> відеоролик</label>
+                <label><input type="radio" name="q5" value="1"> кінопоказ</label>
+                <label><input type="radio" name="q5" value="2"> слайд-шоу</label>
+                <label><input type="radio" name="q5" value="3"> фото-серіал</label>
+            </div>
+        </div>
+
+        <!-- Питання 6 -->
+        <div class="question-block" id="q6">
+            <div class="question-title"><span class="q-num">6</span>Що є головним складовим об'єктом статичної презентації:</div>
+            <div class="options">
+                <label><input type="radio" name="q6" value="0"> сторінка</label>
+                <label><input type="radio" name="q6" value="1"> слайд</label>
+                <label><input type="radio" name="q6" value="2"> кадр</label>
+                <label><input type="radio" name="q6" value="3"> площина</label>
+            </div>
+        </div>
+
+        <!-- Питання 7 -->
+        <div class="question-block" id="q7">
+            <div class="question-title"><span class="q-num">7</span>Вид презентацій, що має налаштовану систему навігації та гіперпосилань:</div>
+            <div class="options">
+                <label><input type="radio" name="q7" value="0"> мультимедійна</label>
+                <label><input type="radio" name="q7" value="1"> інтерактивна</label>
+                <label><input type="radio" name="q7" value="2"> динамічна</label>
+                <label><input type="radio" name="q7" value="3"> навігаційна</label>
+            </div>
+        </div>
+
+        <!-- Питання 8 -->
+        <div class="question-block" id="q8">
+            <div class="question-title"><span class="q-num">8</span>Інтернет-засіб для створення презентацій нелінійного типу:</div>
+            <div class="options">
+                <label><input type="radio" name="q8" value="0"> Onedrive.live.com</label>
+                <label><input type="radio" name="q8" value="1"> Google.com.ua</label>
+                <label><input type="radio" name="q8" value="2"> Prezi.com</label>
+                <label><input type="radio" name="q8" value="3"> Internet Explorer</label>
+            </div>
+        </div>
+
+        <!-- Питання 9 -->
+        <div class="question-block" id="q9">
+            <div class="question-title"><span class="q-num">9</span>Елементи, які містить вікно програми PowerPoint (оберіть кілька):</div>
+            <div class="options">
+                <label><input type="checkbox" name="q9" value="0"> панелі інструментів</label>
+                <label><input type="checkbox" name="q9" value="1"> палітра кольорів</label>
+                <label><input type="checkbox" name="q9" value="2"> конструктор слайдів</label>
+                <label><input type="checkbox" name="q9" value="3"> область слайдів</label>
+                <label><input type="checkbox" name="q9" value="4"> область нотаток</label>
+                <label><input type="checkbox" name="q9" value="5"> область завдань</label>
+            </div>
+        </div>
+
+        <!-- Питання 10 -->
+        <div class="question-block" id="q10">
+            <div class="question-title"><span class="q-num">10</span>Інтерактивний засіб покрокового створення презентації у програмі PowerPoint:</div>
+            <div class="options">
+                <label><input type="radio" name="q10" value="0"> майстер автозмісту</label>
+                <label><input type="radio" name="q10" value="1"> шаблон презентації</label>
+                <label><input type="radio" name="q10" value="2"> розмітка слайду</label>
+                <label><input type="radio" name="q10" value="3"> параметри макету</label>
+            </div>
+        </div>
+
+        <!-- Питання 11 -->
+        <div class="question-block" id="q11">
+            <div class="question-title"><span class="q-num">11</span>Область завдань, що містить пропоновані для нових слайдів макети:</div>
+            <div class="options">
+                <label><input type="radio" name="q11" value="0"> розмітка слайдів</label>
+                <label><input type="radio" name="q11" value="1"> майстер автозмісту</label>
+                <label><input type="radio" name="q11" value="2"> формати шаблону</label>
+                <label><input type="radio" name="q11" value="3"> параметри макетів</label>
+            </div>
+        </div>
+
+        <!-- Питання 12 -->
+        <div class="question-block" id="q12">
+            <div class="question-title"><span class="q-num">12</span>Яке призначення використання вказівки Зразок слайдів?</div>
+            <div class="options">
+                <label><input type="radio" name="q12" value="0"> Процес дотримання загального стилю оформлення презентації</label>
+                <label><input type="radio" name="q12" value="1"> Подання інформації, яка відображується на кожному слайді у спеціальній ділянці</label>
+                <label><input type="radio" name="q12" value="2"> Вказується спосіб взаємного розміщення об'єктів на слайді</label>
+                <label><input type="radio" name="q12" value="3"> На спеціальному слайді визначаються властивості всіх слайдів презентації</label>
+            </div>
+        </div>
+
+        <!-- Питання 13 -->
+        <div class="question-block" id="q13">
+            <div class="question-title"><span class="q-num">13</span>Як називається процес художньо-естетичного проектування та зовнішнього оформлення презентації?</div>
+            <div class="options">
+                <label><input type="radio" name="q13" value="0"> дизайн</label>
+                <label><input type="radio" name="q13" value="1"> верстка</label>
+                <label><input type="radio" name="q13" value="2"> макетування</label>
+                <label><input type="radio" name="q13" value="3"> форматування</label>
+            </div>
+        </div>
+
+        <!-- Питання 14 -->
+        <div class="question-block" id="q14">
+            <div class="question-title"><span class="q-num">14</span>Встановіть відповідність між основними принципами дизайну презентації та їх характеристикою:</div>
+            <div class="match-grid">
+                <div>
+                    <div class="match-row">
+                        <span>ергономіка</span>
+                        <select name="q14_0">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>колористика</span>
+                        <select name="q14_1">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>композиція</span>
+                        <select name="q14_2">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>стилістика</span>
+                        <select name="q14_3">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="match-options-list">
+                    <div><b>1.</b> ефективність використання інструментальних засобів</div>
+                    <div><b>2.</b> вдале розміщення об'єктів на слайді</div>
+                    <div><b>3.</b> усталена форма художнього самовизначення</div>
+                    <div><b>4.</b> вплив кольорів на сприйняття</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Питання 15 -->
+        <div class="question-block" id="q15">
+            <div class="question-title"><span class="q-num">15</span>Вкажіть вдалі комбінації кольорів тексту і фону у презентації (оберіть кілька):</div>
+            <div class="options">
+                <label><input type="checkbox" name="q15" value="0"> чорний на білому</label>
+                <label><input type="checkbox" name="q15" value="1"> білий на жовтому</label>
+                <label><input type="checkbox" name="q15" value="2"> зелений на синьому</label>
+                <label><input type="checkbox" name="q15" value="3"> білий на синьому</label>
+                <label><input type="checkbox" name="q15" value="4"> червоний на жовтому</label>
+                <label><input type="checkbox" name="q15" value="5"> жовтий на чорному</label>
+            </div>
+        </div>
+
+        <!-- Питання 16 -->
+        <div class="question-block" id="q16">
+            <div class="question-title"><span class="q-num">16</span>Яка оптимальна кількість зображень має бути на слайді?</div>
+            <div class="options">
+                <label><input type="radio" name="q16" value="0"> від 1 до 4</label>
+                <label><input type="radio" name="q16" value="1"> лише одне</label>
+                <label><input type="radio" name="q16" value="2"> 5 і більше</label>
+                <label><input type="radio" name="q16" value="3"> бажано не використовувати</label>
+            </div>
+        </div>
+
+        <!-- Питання 17 -->
+        <div class="question-block" id="q17">
+            <div class="question-title"><span class="q-num">17</span>Чи можна замінити на інший макет доданого до презентації слайду?</div>
+            <div class="options">
+                <label><input type="radio" name="q17" value="0"> лише для обмеженої кількості слайдів</label>
+                <label><input type="radio" name="q17" value="1"> можна, тільки для першого слайду</label>
+                <label><input type="radio" name="q17" value="2"> це зробити неможливо</label>
+                <label><input type="radio" name="q17" value="3"> можна, в залежності від потреб</label>
+            </div>
+        </div>
+
+        <!-- Питання 18 -->
+        <div class="question-block" id="q18">
+            <div class="question-title"><span class="q-num">18</span>Встановити відповідність між комбінаціями клавіш та їх призначенням:</div>
+            <div class="match-grid">
+                <div>
+                    <div class="match-row">
+                        <span>Ctrl+F1</span>
+                        <select name="q18_0">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>Ctrl+D</span>
+                        <select name="q18_1">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>Ctrl+M</span>
+                        <select name="q18_2">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>F5</span>
+                        <select name="q18_3">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="match-options-list">
+                    <div><b>1.</b> область завдань</div>
+                    <div><b>2.</b> показ слайдів</div>
+                    <div><b>3.</b> створити новий слайд</div>
+                    <div><b>4.</b> дублювати слайд</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Питання 19 -->
+        <div class="question-block" id="q19">
+            <div class="question-title"><span class="q-num">19</span>Як можна ввести текст в слайдах презентацій PowerPoint?</div>
+            <div class="options">
+                <label><input type="radio" name="q19" value="0"> тільки в написах</label>
+                <label><input type="radio" name="q19" value="1"> ввести текст на слайді неможливо</label>
+                <label><input type="radio" name="q19" value="2"> в будь-якому місці, де стоїть курсор</label>
+                <label><input type="radio" name="q19" value="3"> в автоматично визначеному для введення тексту місці</label>
+            </div>
+        </div>
+
+        <!-- Питання 20 -->
+        <div class="question-block" id="q20">
+            <div class="question-title"><span class="q-num">20</span>Вставити відповідність між дією та командою меню, що дозволяє її виконати:</div>
+            <div class="match-grid">
+                <div>
+                    <div class="match-row">
+                        <span>задати макет слайду</span>
+                        <select name="q20_0">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>додати елементи оформлення</span>
+                        <select name="q20_1">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>налаштувати демонстрацію</span>
+                        <select name="q20_2">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>змінити масштаб перегляду</span>
+                        <select name="q20_3">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="match-options-list">
+                    <div><b>1.</b> Главная</div>
+                    <div><b>2.</b> Показ слайдов</div>
+                    <div><b>3.</b> Вставка</div>
+                    <div><b>4.</b> Вид</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Питання 21 -->
+        <div class="question-block" id="q21">
+            <div class="question-title"><span class="q-num">21</span>Режим роботи з презентацією, де слайди відображаються у вигляді ескізів:</div>
+            <div class="options">
+                <label><input type="radio" name="q21" value="0"> сортувальник слайдів</label>
+                <label><input type="radio" name="q21" value="1"> показ слайдів</label>
+                <label><input type="radio" name="q21" value="2"> сторінки нотаток</label>
+                <label><input type="radio" name="q21" value="3"> звичайний</label>
+            </div>
+        </div>
+
+        <!-- Питання 22 -->
+        <div class="question-block" id="q22">
+            <div class="question-title"><span class="q-num">22</span>Який режим відображення презентації дозволяє працювати з кожним слайдом окремо:</div>
+            <div class="options">
+                <label><input type="radio" name="q22" value="0"> структури</label>
+                <label><input type="radio" name="q22" value="1"> розмітки</label>
+                <label><input type="radio" name="q22" value="2"> нормальний</label>
+                <label><input type="radio" name="q22" value="3"> звичайний</label>
+            </div>
+        </div>
+
+        <!-- Питання 23 -->
+        <div class="question-block" id="q23">
+            <div class="question-title"><span class="q-num">23</span>Що можна робити у режимі Показ слайдів:</div>
+            <div class="options">
+                <label><input type="radio" name="q23" value="0"> демонструвати слайди презентації</label>
+                <label><input type="radio" name="q23" value="1"> змінювати послідовність розташування слайдів</label>
+                <label><input type="radio" name="q23" value="2"> переглядати ескізи слайдів</label>
+                <label><input type="radio" name="q23" value="3"> змінювати об'єкти на слайдах</label>
+            </div>
+        </div>
+
+        <!-- Питання 24 -->
+        <div class="question-block" id="q24">
+            <div class="question-title"><span class="q-num">24</span>Комбінація клавіш для запуску демонстрації презентації:</div>
+            <div class="options">
+                <label><input type="radio" name="q24" value="0"> Ctrl+F7</label>
+                <label><input type="radio" name="q24" value="1"> Shift+F5</label>
+                <label><input type="radio" name="q24" value="2"> Alt+F3</label>
+                <label><input type="radio" name="q24" value="3"> F1+Enter</label>
+            </div>
+        </div>
+
+        <!-- Питання 25 -->
+        <div class="question-block" id="q25">
+            <div class="question-title"><span class="q-num">25</span>Натискання якої клавіші дозволяє вийти із режиму перегляду презентацій?</div>
+            <div class="options">
+                <label><input type="radio" name="q25" value="0"> Delete</label>
+                <label><input type="radio" name="q25" value="1"> Esc</label>
+                <label><input type="radio" name="q25" value="2"> F5</label>
+                <label><input type="radio" name="q25" value="3"> Backspace</label>
+            </div>
+        </div>
+
+        <!-- Питання 26 -->
+        <div class="question-block" id="q26">
+            <div class="question-title"><span class="q-num">26</span>Які режими показу презентації є в MS PowerPoint? Виберіть одну або кілька правильних відповідей:</div>
+            <div class="options">
+                <label><input type="checkbox" name="q26" value="0"> навігаційний</label>
+                <label><input type="checkbox" name="q26" value="1"> автоматичний</label>
+                <label><input type="checkbox" name="q26" value="2"> керований користувачем</label>
+                <label><input type="checkbox" name="q26" value="3"> показ в Інтернеті</label>
+                <label><input type="checkbox" name="q26" value="4"> керований доповідачем</label>
+                <label><input type="checkbox" name="q26" value="5"> анонімний</label>
+            </div>
+        </div>
+
+        <!-- Питання 27 -->
+        <div class="question-block" id="q27">
+            <div class="question-title"><span class="q-num">27</span>Встановити відповідність між розширенням та відповідним йому типом збереження файлу презентації:</div>
+            <div class="match-grid">
+                <div>
+                    <div class="match-row">
+                        <span>ppt</span>
+                        <select name="q27_0">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>rtf</span>
+                        <select name="q27_1">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>pps</span>
+                        <select name="q27_2">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span>pot</span>
+                        <select name="q27_3">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="match-options-list">
+                    <div><b>1.</b> демонстрація на комп'ютері</div>
+                    <div><b>2.</b> презентація PowerPoint</div>
+                    <div><b>3.</b> шаблон презентації</div>
+                    <div><b>4.</b> план презентації</div>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="submit-btn" onclick="checkQuiz()">Завершити тест та перевірити результати</button>
+    </form>
+
+    <div id="result-box">
+        <h2>Результати тестування</h2>
+        <p><strong>Тема тесту:</strong> <span id="res-topic"></span></p>
+        <div class="score-text" id="res-percentage"></div>
+        <p id="res-details"></p>
+    </div>
+</div>
+
+<script>
+    const answers = {
+        q1: "2",
+        q2: "1",
+        q3: ["1", "2", "5"], // проектор, екран, комп'ютер
+        q4: ["2", "4", "3", "1"],
+        q5: "2",
+        q6: "1",
+        q7: "1",
+        q8: "2",
+        q9: ["0", "3", "4", "5"], // панелі інструментів, область слайдів, область нотаток, область завдань
+        q10: "0",
+        q11: "0",
+        q12: "3",
+        q13: "0",
+        q14: ["1", "4", "2", "3"],
+        q15: ["0", "3", "5"], // чорний на білому, білий на синьому, жовтий на чорному
+        q16: "0",
+        q17: "3",
+        q18: ["1", "4", "3", "2"],
+        q19: "3",
+        q20: ["1", "3", "2", "4"],
+        q21: "0",
+        q22: "3",
+        q23: "0",
+        q24: "1",
+        q25: "1",
+        q26: ["1", "2", "4"], // автоматичний, керований користувачем, керований доповідачем
+        q27: ["2", "4", "1", "3"]
+    };
+
+    function checkQuiz() {
+        let score = 0;
+        const total = Object.keys(answers).length;
+
+        for (let i = 1; i <= total; i++) {
+            const qName = "q" + i;
+            const block = document.getElementById(qName);
+            block.classList.remove("correct-block", "wrong-block");
+            const correctAns = answers[qName];
+            let isCorrect = false;
+
+            if (typeof correctAns === "string") {
+                // Одиночний вибір (radio)
+                const selected = document.querySelector(`input[name="${qName}"]:checked`);
+                if (selected && selected.value === correctAns) {
+                    isCorrect = true;
+                }
+            } else if (Array.isArray(correctAns)) {
+                const checkboxes = document.querySelectorAll(`input[name="${qName}"]`);
+                if (checkboxes.length > 0) {
+                    // Множинний вибір (checkbox)
+                    const checkedValues = Array.from(checkboxes)
+                        .filter(cb => cb.checked)
+                        .map(cb => cb.value);
+                    if (checkedValues.length === correctAns.length &&
+                        checkedValues.every(val => correctAns.includes(val))) {
+                        isCorrect = true;
+                    }
+                } else {
+                    // Встановлення відповідності (select)
+                    let matchAll = true;
+                    for (let j = 0; j < correctAns.length; j++) {
+                        const selectEl = document.querySelector(`select[name="${qName}_${j}"]`);
+                        if (!selectEl || selectEl.value !== correctAns[j]) {
+                            matchAll = false;
+                            break;
+                        }
+                    }
+                    isCorrect = matchAll;
+                }
+            }
+
+            if (isCorrect) {
+                score++;
+                block.classList.add("correct-block");
+            } else {
+                block.classList.add("wrong-block");
+            }
+        }
+
+        const percentage = Math.round((score / total) * 100);
+        const topicText = document.getElementById("test-topic").innerText;
+
+        document.getElementById("res-topic").innerText = topicText;
+        document.getElementById("res-percentage").innerText = `Результат: ${percentage}% вірних відповідей`;
+        document.getElementById("res-details").innerText = `Ви правильно відповіли на ${score} із ${total} питань.`;
+
+        const resultBox = document.getElementById("result-box");
+        resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: "smooth" });
+    }
+</script>
+
+</body>
+</html>
